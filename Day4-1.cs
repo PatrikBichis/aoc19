@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace aoc2019
 {
-    public class Day4_2 : PuzzelBase, IPuzzel
+    public class Day4_1 : PuzzelBase, IPuzzel
     {
-        public Day4_2(InputType input) : base(input, 4, 1)
+        public Day4_1(InputType input) : base(input, 4, 1)
         {
             
         }
