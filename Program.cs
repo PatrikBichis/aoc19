@@ -17,6 +17,8 @@ namespace aoc2019
             //new Day3_1(InputType.Input).Run().Print();
             //new Day3_2(InputType.Input).Run().Print();
 
+            new Day4_1(InputType.Input).Run().Print();
+
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("---------------------------");
             Console.ReadKey();
