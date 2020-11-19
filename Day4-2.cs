@@ -6,19 +6,15 @@ using System.Threading.Tasks;
 
 namespace aoc2019
 {
-    public class Day4_2 : PuzzelBase, IPuzzel
+    public class Day4_1 : PuzzelBase, IPuzzel
     {
-        public Day4_2(InputType input) : base(input, 4, 1)
+        public Day4_1(InputType input) : base(input, 4, 1)
         {
             
         }
 
         public IPuzzel Run()
         {
-            Console.WriteLine(ValidateSeq(112233));
-            Console.WriteLine(ValidateSeq(123444));
-            Console.WriteLine(ValidateSeq(111122));
-
             var range = Input[0].Split('-');
             var start = int.Parse(range[0]);
             var target = int.Parse(range[1]);
@@ -28,7 +24,12 @@ namespace aoc2019
             {
                 var seq = i;
 
-                if (ValidateSeq(seq)) count++;
+                if (CheckIfNeverDecreases(seq))
+                {
+                    if(CheckIfAnyDouble(seq)){
+                        count++;
+                    }
+                }
             }
 
             Answer = count.ToString();
@@ -36,25 +37,9 @@ namespace aoc2019
             return this;
         }
 
-        private bool ValidateSeq(int seq)
-        {
-            if (CheckIfNeverDecreases(seq))
-            {
-                if (CheckIfAnyDouble(seq))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         private bool CheckIfAnyDouble(int seq)
         {
             var s = seq.ToString().ToCharArray();
-            var type = ' ';
-            var count = 0;
-            var foundTwo = false;
 
             for(var i = 0; i<s.Length-1; i++)
             {
@@ -62,23 +47,7 @@ namespace aoc2019
                 var b = s[i + 1];
 
                 if (a == b)
-                {
-                    if (type != b)
-                    {
-                        if(count == 1)
-                        {
-                            foundTwo = true;
-                        }
-                        count = 1;
-                    }
-                    else count++;
-                    type = b;
-                }
-            }
-
-            if (count == 1 || foundTwo)
-            {
-                return true;
+                    return true;
             }
 
             return false;
